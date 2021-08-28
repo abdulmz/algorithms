@@ -65,10 +65,11 @@ int main(int argc, char* argv[]) {
 		if ( ((d * e) % prod) == 1)
 			break;
 	}
-	printf("Value of e: %d\nValue of d: %d\n", e, d);
-	printf("Enter some numerical data: ");
+	printf("Enter plaintext: ");
 	scanf("%d", &data);
 
+    printf("E = %d\nD = %d\n", e, d);
+    
 	cipher = rsa(data, e, n);
 	printf("The cipher text is: %d\n", cipher);
 

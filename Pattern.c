@@ -98,14 +98,14 @@ int main()
 	printf("Enter the text: ");
     gets(buff);
     sscanf(buff, "%s", text);
-    printf("\nEnter the pattern: ");
+    printf("Enter the pattern: ");
 	gets(buff);
     sscanf(buff, "%s", pattern);
 	
     int patlength = strlen(pattern);
     int textlength = strlen(text);
 
-    printf("\nChoose the Algorithm to use: ");
+    printf("Choose the Algorithm to use: ");
     printf("1. NAIVE STRING MATCH\n2. RABIN-KARP ALGORITHM\n3. KMP ALGORITHM\n");  
     scanf("%d",&choice);
 

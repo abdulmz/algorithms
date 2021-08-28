@@ -94,24 +94,29 @@ void KMPAlgorithm(const char* X, const char* Y, int m, int n)
 int main()
 {
     int choice;
-    char pattern[30], text[30];
+    char pattern[30], text[30], buff[100];
 	printf("Enter the text: ");
-	scanf("%s", text);
+    gets(buff);
+    sscanf(buff, "%s", text);
     printf("\nEnter the pattern: ");
-	scanf("%s", pattern);
+	gets(buff);
+    sscanf(buff, "%s", pattern);
 	
     int patlength = strlen(pattern);
     int textlength = strlen(text);
 
     printf("\nChoose the Algorithm to use: ");
     printf("1. NAIVE STRING MATCH\n2. RABIN-KARP ALGORITHM\n3. KMP ALGORITHM\n");  
-    scanf("%d",choice);
+    scanf("%d",&choice);
 
     switch(choice)
     {
         case 1: NaiveStringMatch(pattern, text, patlength, textlength);
+                break;
         case 2: RabinKarp(pattern, text, patlength, textlength);
+                break;
         case 3: KMPAlgorithm(text, pattern, textlength, patlength);
+                break;
         default : break;
     }
 }

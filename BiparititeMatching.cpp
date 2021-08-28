@@ -41,16 +41,10 @@ int main()
 {
    bool bpGraph[M][N] = {{0, 1, 1, 0, 0, 0},
                           {1, 0, 0, 1, 0, 0},
-                          {0, 0, 1, 0, 0, 1},
+                          {0, 0, 1, 0, 0, 0},
                           {0, 0, 1, 1, 0, 0},
-                          {0, 0, 1, 0, 1, 1},
-                          {0, 0, 1, 1, 0, 0},
-                          {0, 1, 1, 0, 0, 1},
-                          {0, 0, 1, 1, 0, 0},
-                          {1, 0, 1, 1, 0, 0},
-                          {0, 0, 1, 0, 1, 0},
-                          };
-    cout << "Maximum number of applicants that can get job is "
-         << maxBPM(bpGraph);
+                          {0, 0, 0, 0, 0, 0},
+                          {0, 0, 0, 0, 0, 1}};
+    cout << "Maximum number of applicants that can get job is " << maxBPM(bpGraph) <<"\n";
     return 0;
 }

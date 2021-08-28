@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
-int isPrime(int number)
-{
-    for (int i=2; i<= number/2; i++)
-    {
-        if (number%i == 0)
-            return 0;
-    }
-    return 1;
+int isPrime(int n) {
+	int i;
+	int m = n / 2;
+	for (i = 2; i <= m; i++) {
+		if (n % i == 0) {
+			return 0; 
+		}
+	}
+	return 1;
 }
 
-int findGCD(int n1, int n2) {
+int getGCD(int n1, int n2) {
 	int i, gcd;
 
 	for(i = 1; i <= n1 && i <= n2; ++i) {
@@ -23,30 +23,25 @@ int findGCD(int n1, int n2) {
 	return gcd;
 }
 
-int rsa(int input, int e, int prod)
-{
-    ll a = 1;
-    ll temp = input;
-    while(e > 0)
-    {
-        if (e%2 == 1)
-        {
-            a = (a*temp)%prod;
-        }    
-        temp = (temp*temp) % prod;
-        e = e/2;
-    }
-    return a % prod;
+int rsa(int a, int b, int n) {
+	long long x = 1, y = a;
+
+	while (b > 0) {
+		if (b % 2 == 1)
+			x = (x * y) % n;
+		y = (y * y) % n; 
+		b /= 2;
+	}
+
+	return x % n;
 }
 
 int main(int argc, char* argv[]) {
-
+	int prime1, prime2;
+	int n, prod;
 	int data, cipher, decrypt;
-	int prime1;
-    int prime2;
-    while(1)
-    {
-        printf("Enter the two prime numbers:");
+	while (1) {
+		printf("Enter the two prime numbers:");
         scanf("%d",&prime1);
         scanf("%d",&prime2);
 
@@ -54,32 +49,31 @@ int main(int argc, char* argv[]) {
             break;
         else
             printf("Please Enter Prime Numbers!\n");
-    }
+	}
 	
-	int n = prime1*prime2;
-	int phi = (prime1-1)*(prime2-1);
+	n = prime1 * prime2;
+	prod = (prime1 - 1) * (prime2 - 1);
 
 	int e = 0;
 	for (e = 5; e <= 100; e++) {
-		if (findGCD(phi, e) == 1)
+		if (getGCD(prod, e) == 1)
 			break;
 	}
 	
 	int d = 0;
 	for (d = e + 1; d <= 100; d++) {
-		if ( ((d * e) % phi) == 1)
+		if ( ((d * e) % prod) == 1)
 			break;
 	}
+	printf("Value of e: %d\nValue of d: %d\n", e, d);
+	printf("Enter some numerical data: ");
+	scanf("%d", &data);
 
-    printf("Enter the number to be decrypted: ");
-    scanf("%d",data);
+	cipher = rsa(data, e, n);
+	printf("The cipher text is: %d\n", cipher);
 
-    int ciphertext = rsa(data, e, n);
-    int decypertext = rsa(ciphertext, d, n);
-
-    printf("\nE= %d, D=%d\n",e,d);
-    printf("Ciphered text= %d, Decyphered text= %d",ciphertext, decypertext);
-    return 0;
-}
+	decrypt = rsa(cipher, d, n);
+	printf("The decrypted text is: %d\n", decrypt);
+	return 0;
 }
 
